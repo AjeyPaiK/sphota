@@ -1,2 +1,25 @@
+# Data directories
 sandhi_dataset/*
-sanskrit/*
+
+# External dependencies (clone separately as needed)
+sanskrit/
+
+# Python build and distribution
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

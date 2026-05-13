@@ -1,0 +1,131 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sphota"
+version = "0.1.0"
+description = "Sanskrit linguistic tools and datasets, including sandhi processing"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Ajey Pai", email = "ajeypie@gmail.com"},
+]
+keywords = ["sanskrit", "linguistics", "nlp", "sandhi"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "tqdm>=4.50",
+]
+
+[project.optional-dependencies]
+# Text processing and transliteration
+transliteration = [
+    "indic-transliteration>=0.6.14",
+]
+
+# Data processing and numerical computing
+data = [
+    "numpy>=1.19.0",
+    "h5py>=2.10.0",
+    "pandas>=1.1.0",
+]
+
+# NLP and language models
+nlp = [
+    "transformers>=4.10.0",
+    "sentence-transformers>=2.0.0",
+    "datasets>=2.0.0",
+]
+
+# Deep learning with PyTorch
+torch = [
+    "torch>=1.9.0",
+    "transformers>=4.10.0",
+    "sentence-transformers>=2.0.0",
+]
+
+# Deep learning with TensorFlow
+tensorflow = [
+    "tensorflow>=2.5.0",
+]
+
+# Machine learning utilities
+ml = [
+    "scikit-learn>=0.24.0",
+    "safetensors>=0.3.0",
+]
+
+# Development and testing
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=3.0",
+    "black>=22.0",
+    "ruff>=0.1.0",
+    "mypy>=0.900",
+]
+
+# Papers and research code dependencies
+papers = [
+    "numpy>=1.19.0",
+    "h5py>=2.10.0",
+    "pandas>=1.1.0",
+    "tensorflow>=2.5.0",
+    "torch>=1.9.0",
+    "transformers>=4.10.0",
+    "sentence-transformers>=2.0.0",
+    "scikit-learn>=0.24.0",
+    "datasets>=2.0.0",
+    "safetensors>=0.3.0",
+]
+
+# Complete environment with all dependencies
+all = [
+    "tqdm>=4.50",
+    "indic-transliteration>=0.6.14",
+    "numpy>=1.19.0",
+    "h5py>=2.10.0",
+    "pandas>=1.1.0",
+    "tensorflow>=2.5.0",
+    "torch>=1.9.0",
+    "transformers>=4.10.0",
+    "sentence-transformers>=2.0.0",
+    "scikit-learn>=0.24.0",
+    "datasets>=2.0.0",
+    "safetensors>=0.3.0",
+    "pytest>=7.0",
+    "pytest-cov>=3.0",
+    "black>=22.0",
+    "ruff>=0.1.0",
+    "mypy>=0.900",
+]
+
+[project.scripts]
+sphota-build-sandhi = "sphota.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/sphota"
+Issues = "https://github.com/yourusername/sphota/issues"
+
+[tool.setuptools]
+packages = ["sphota"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py10', 'py11', 'py12']
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
