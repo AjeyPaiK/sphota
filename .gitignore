@@ -1,8 +1,11 @@
 # Data directories
 sandhi_dataset/*
 
-# External dependencies (clone separately as needed)
-sanskrit/
+# Checkpoints
+checkpoints/*
+
+# Training outputs
+output/*
 
 # Python build and distribution
 build/

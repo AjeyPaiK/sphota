@@ -28,6 +28,7 @@ classifiers = [
 
 dependencies = [
     "tqdm>=4.50",
+    "rich>=13.0.0",
 ]
 
 [project.optional-dependencies]
@@ -50,9 +51,15 @@ nlp = [
     "datasets>=2.0.0",
 ]
 
-# Deep learning with PyTorch
+# Deep learning with PyTorch (standard pip installation)
 torch = [
     "torch>=1.9.0",
+    "transformers>=4.10.0",
+    "sentence-transformers>=2.0.0",
+]
+
+# PyTorch dependencies without torch (for Jetson with custom-compiled wheel)
+torch-deps = [
     "transformers>=4.10.0",
     "sentence-transformers>=2.0.0",
 ]
@@ -66,6 +73,11 @@ tensorflow = [
 ml = [
     "scikit-learn>=0.24.0",
     "safetensors>=0.3.0",
+]
+
+# Visualization (plotting loss curves)
+viz = [
+    "plotext>=5.2.0",
 ]
 
 # Development and testing
@@ -113,7 +125,7 @@ all = [
 ]
 
 [project.scripts]
-sphota-build-sandhi = "sphota.cli:main"
+sphota = "sphota.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/yourusername/sphota"

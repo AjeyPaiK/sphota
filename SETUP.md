@@ -15,10 +15,34 @@ Clone and install the sphota package:
 ```bash
 git clone <sphota-repo-url>
 cd sphota
-pip install -e ".[transliteration]"
 ```
 
-The `[transliteration]` extra includes the indic-transliteration library needed for script conversion.
+### For Standard Machines (x86, GPU)
+
+```bash
+pip install -e ".[torch,transliteration]"
+```
+
+### For Jetson (Nano, Orin, Xavier)
+
+Jetson requires PyTorch compiled specifically by NVIDIA, not the standard PyPI wheel.
+
+**1. Install NVIDIA's PyTorch wheel for your Jetson model:**
+
+Visit [NVIDIA PyTorch for Jetson](https://forums.developer.nvidia.com/t/pytorch-for-jetson/) and download the appropriate `.whl` for your JetPack version.
+
+For example (JetPack 5.0+):
+```bash
+pip install https://developer.download.nvidia.com/.../torch-*.whl
+```
+
+**2. Install sphota with torch dependencies (but not torch from PyPI):**
+
+```bash
+pip install -e ".[torch-deps,transliteration]"
+```
+
+This installs transformers, sentence-transformers, and other deps without re-downloading torch from PyPI.
 
 ## Step 2: Clone Sanskrit Repository (REQUIRED for dataset building)
 
