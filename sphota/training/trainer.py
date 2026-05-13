@@ -2,12 +2,14 @@
 
 import json
 import math
+import time
 from pathlib import Path
 from typing import Optional, Tuple
 
 import torch
 import torch.nn as nn
 from rich.console import Console
+from rich.live import Live
 from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, TimeRemainingColumn
 from rich.table import Table
@@ -20,6 +22,28 @@ console = Console()
 
 class Trainer:
     """Trainer for sandhi-viccheda model."""
+
+    def _get_star_frame(self, counter: int) -> str:
+        """Get twinkling star frame based on counter (alternates every frame)."""
+        star_bright = (
+            "[bold red]           *\n"
+            "        *  *  *\n"
+            "      *  *   *  *\n"
+            "     *  *  *  *  *\n"
+            "      *  *   *  *\n"
+            "        *  *  *\n"
+            "           *[/bold red]"
+        )
+        star_dim = (
+            "[dim red]           *\n"
+            "        *  *  *\n"
+            "      *  *   *  *\n"
+            "     *  *  *  *  *\n"
+            "      *  *   *  *\n"
+            "        *  *  *\n"
+            "           *[/dim red]"
+        )
+        return star_bright if counter % 2 == 0 else star_dim
 
     def __init__(
         self,
@@ -195,14 +219,24 @@ class Trainer:
 
     def fit(self, epochs: int, resume_from: Optional[str] = None):
         """Train for given number of epochs with fancy logging."""
-        # Header
-        console.print(
-            Panel(
-                "[bold cyan]🧠 Sanskrit Sandhi-Viccheda Transformer[/bold cyan]\n"
-                "[dim]Training started • Mixed precision enabled[/dim]",
-                border_style="cyan",
-                expand=False,
-            )
+        # Animated header with twinkling red star (centered)
+        star_bright = (
+            "[bold red]           *\n"
+            "        *  *  *\n"
+            "      *  *   *  *\n"
+            "     *  *  *  *  *\n"
+            "      *  *   *  *\n"
+            "        *  *  *\n"
+            "           *[/bold red]"
+        )
+        star_dim = (
+            "[dim red]           *\n"
+            "        *  *  *\n"
+            "      *  *   *  *\n"
+            "     *  *  *  *  *\n"
+            "      *  *   *  *\n"
+            "        *  *  *\n"
+            "           *[/dim red]"
         )
 
         start_epoch = 0
@@ -216,6 +250,16 @@ class Trainer:
             console.print(f"\n[yellow]↻ Resumed from epoch {start_epoch}[/yellow]\n")
 
         epoch_results = []
+
+        # Animate star at start (7 frames, ending on bright)
+        for i in range(7):
+            star_frame = self._get_star_frame(i)
+            console.print(star_frame)
+            if i < 6:
+                time.sleep(0.5)
+                console.clear()
+
+        console.print()  # Blank line after star
 
         for epoch in range(start_epoch, epochs):
             console.print(f"\n[bold cyan]{'='*60}[/bold cyan]")
